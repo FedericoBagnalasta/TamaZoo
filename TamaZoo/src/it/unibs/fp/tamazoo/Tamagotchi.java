@@ -1,7 +1,7 @@
 package it.unibs.fp.tamazoo;
 import it.unibs.fp.mylib.EstrazioniCasuali;
 
-public class Tamabase {
+public class Tamagotchi {
 	public static final String NUMERO_DI_CAREZZE_DATE = "\nIl numero di carezze date al Tamagotchi e': %d\n";
 	public static final String NUMERO_DI_BISCOTTI_DATI = "\nIl numero di biscotti dati al Tamagotchi e': %d\n";
 	public static final int MAX_CAREZZE = 20;
@@ -36,9 +36,19 @@ public class Tamabase {
 	 * @param gradoAffetivo
 	 * @param gradoSazieta
 	 */
-	public Tamabase(String nome, int gradoAffetivo, int gradoSazieta) {
+	public Tamagotchi(String nome, int gradoAffetivo, int gradoSazieta) {
 		this.nome = nome;
 		this.gradoAffettivo = gradoAffetivo;
+		this.gradoSazieta = gradoSazieta;
+	}
+	
+	/**
+	 * Costruttore per TamaTriste
+	 * @param nome
+	 * @param gradoSazieta
+	 */
+	public Tamagotchi(String nome, int gradoSazieta) {
+		this.nome = nome;
 		this.gradoSazieta = gradoSazieta;
 	}
 	

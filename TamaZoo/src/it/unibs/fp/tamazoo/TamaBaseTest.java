@@ -23,11 +23,13 @@ public class TamaBaseTest {
 		assertTrue(!tama.sonoMorto());
 	}
 	
+	//ERRATO
 	@Test(expected=IllegalArgumentException.class)
 	public void cantInstantiatePetWithNegativeSatisfaction() throws Exception {
 		new Tamagotchi("nome", -10, 50);
 	}
 	
+	//ERRATO
 	@Test(expected=IllegalArgumentException.class)
 	public void cantInstantiatePetWithNegativeRepletion() throws Exception {
 		new Tamagotchi("nome", 50, -10);
