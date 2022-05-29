@@ -6,41 +6,48 @@ public class TamaGordo extends Tamagotchi{
 	
 	private double gradoSoddisfazione = 100.0;
 
-	public TamaGordo(String nome, int gradoAffettivo) {
-		super(nome, gradoAffettivo);
+	public TamaGordo(String nome, int gradoAffettivo, int gradoSazieta) {
+		super(nome, gradoAffettivo, gradoSazieta);
 	}
+	
+	//NUOVO COSTRUTTORE SENZA SODDISFAZIONE PER TEST
 	
 	@Override
-	public void riceviCarezze() {
-		int numCarezze = EstrazioniCasuali.estraiIntero(MIN_CAREZZE, MAX_CAREZZE);
-		gradoAffettivo=Math.min(MAX_SODDISFAZIONE, getSoddisfazione()+numCarezze);                      //Non so come risolvere
-		gradoSazieta=Math.max(MIN_SAZIETA, 2*(getSazieta()-numCarezze/FATTORE_DECREMENTO_SAZIETA));             //Non so come risolvere
-		System.out.printf(NUMERO_DI_CAREZZE_DATE, numCarezze);
+	public void riceviCarezze(int numCarezze) {
+		setGradoSazieta(Math.max(MIN_SAZIETA, 2*(getGradoSazieta()-numCarezze/FATTORE_DECREMENTO_SAZIETA)));
 	}
 	
+	
+	
+	@Override
+	public void riceviBiscotti(int numBiscotti) {
+		for(int i = 0; i < numBiscotti; i++) {
+			setGradoSazieta(Math.min(MAX_SAZIETA, getGradoSazieta()+getGradoSazieta()*FATTORE_AUMENTO_SAZIETA));
+		}
+	}
+
 	@Override
 	public boolean sonoMorto() {
-		return getSazieta() == MORTE_MIN_SAZIETA;
+		return getGradoSazieta() == MORTE_MIN_SAZIETA;
 	}
 	
 	@Override
 	public boolean sonoTriste() {
-		return(getSazieta() < TRISTEZZA_MIN_SAZIETA);
+		return(getGradoSazieta() < TRISTEZZA_MIN_SAZIETA);
 	}
 	
-	public double getSoddisfazione() {        //Non so se sia da mettere in Override
-		return gradoSoddisfazione;
-	}
 
 	@Override
 	public String toString() {
 	StringBuffer descrizione=new StringBuffer();
-			gradoSazieta = (double) (Math.round(getSazieta()*100.0)/100.0);
-			descrizione.append(NOME+getNome());                                   //Non so come risolvere
-			descrizione.append(SODDISFAZIONE+getSoddisfazione());
-			descrizione.append(SAZIETA+getSazieta());
-			if(sonoTriste()) descrizione.append(TRISTE);
+			setGradoSazieta((double) (Math.round(getGradoSazieta()*100.0)/100.0));
+			descrizione.append("\n======================================");
+			descrizione.append(NOME+getNome());     
+			descrizione.append("\nTipo: TamaGordo");
+			descrizione.append(SODDISFAZIONE+getGradoSoddisfazione());
+			descrizione.append(SAZIETA+getGradoSazieta());
 			if(sonoMorto()) descrizione.append(MORTO);
+			descrizione.append("\n======================================");
 			return descrizione.toString();
 	}
 }

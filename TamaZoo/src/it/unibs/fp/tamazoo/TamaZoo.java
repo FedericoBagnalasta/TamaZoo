@@ -21,7 +21,7 @@ public TamaZoo() {
 	int numTama = InputDati.leggiIntero();
 	
 	for(int i = 0; i <numTama; i++) {
-		tipoTama = NumeriCasuali.estraiIntero(0, 3);
+		tipoTama = NumeriCasuali.estraiIntero(0, 2);
 		zoo.add(creaTama());
 		}
 	
@@ -32,7 +32,7 @@ public TamaZoo() {
  * Metodo che crea un Tamagotchi di un tipo precedentemente estratto
  * @return
  */
-private Tamagotchi creaTama() {
+private Tamagotchi creaTama() { //Da verificare che restituisca un oggetto Tamagotchi 
 		String nome = InputDati.leggiStringa("Come vuoi chiamare il tuo Tamagotchi?");
 		int gradoAffettivo = NumeriCasuali.estraiIntero(20, 100);
 		int gradoSazieta = NumeriCasuali.estraiIntero(20, 100);
@@ -43,7 +43,7 @@ private Tamagotchi creaTama() {
 		case 1: 
 			return new TamaTriste (nome, gradoSazieta);	
 		case 2: 
-			return new TamaGordo (nome, gradoAffettivo);
+			return new TamaGordo (nome, 100, gradoSazieta);
 			
 	}
 	return null;
@@ -51,28 +51,37 @@ private Tamagotchi creaTama() {
 }
 
 
+public void riceviBiscottiZoo() {
+	int biscottiRandom = NumeriCasuali.estraiIntero(0, 20);
+	
+	for(int i = 0; i < zoo.size(); i++) {
+		zoo.get(i).riceviBiscotti(biscottiRandom);
+	}
+	
+}
+
+public void riceviCarezzeZoo() {
+	
+int carezzeRandom = NumeriCasuali.estraiIntero(0, 20);
+	
+	for(int i = 0; i < zoo.size(); i++) {
+		zoo.get(i).riceviCarezze(carezzeRandom);
+	}
+	
+}
+
+
+public String toString() {
+	
+	StringBuffer elencoZoo = new StringBuffer();
+	
+	for(int i = 0; i < zoo.size(); i++) {
+		elencoZoo.append(String.format("%s\n", zoo.get(i).toString()));
+	}
+	
+	return elencoZoo.toString();
+}
+
+
 
 }
-/*
-	String [] voci = {};
-	
-	MyMenu menu = new MyMenu ("Scegli un opzione", voci);
-	int scelta = 0;
-	
-	do {
-		
-		scelta = menu.scegli();
-		
-		switch(scelta) {
-			case 1: 
-				break;
-			case 2:
-				break;
-			default:
-				break;
-			}
-		
-		}while (scelta != 0);
-	
-	}	
-*/

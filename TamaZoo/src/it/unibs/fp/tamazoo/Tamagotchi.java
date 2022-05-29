@@ -31,7 +31,7 @@ public class Tamagotchi {
 	private double gradoAffettivo;
 	
 	/**
-	 * Costruttore della classe Tamagotchi
+	 * Costruttore della classe Tamagotchi e TamaGordo
 	 * @param nome
 	 * @param gradoAffetivo
 	 * @param gradoSazieta
@@ -101,14 +101,22 @@ public class Tamagotchi {
 		return gradoSazieta == MORTE_MAX_SAZIETA || gradoSazieta == MORTE_MIN_SAZIETA || gradoAffettivo == MORTE_MIN_SODDISFAZIONE;
 	}
 	
-	public double getSazieta() {
+	public double getGradoSazieta() {
 		return gradoSazieta;
 	}
 
-	public double getSoddisfazione() {
+	public double getGradoSoddisfazione() {
 		return gradoAffettivo;
 	}
 	
+	public void setGradoSazieta(double gradoSazieta) {
+		this.gradoSazieta = gradoSazieta;
+	}
+
+	public void setGradoAffettivo(double gradoAffettivo) {
+		this.gradoAffettivo = gradoAffettivo;
+	}
+
 	public String getNome() {       //Aggiunto. Credo serva per l'ereditarieta'
 		return nome;
 	}
@@ -128,11 +136,14 @@ public class Tamagotchi {
 	StringBuffer descrizione=new StringBuffer();
 			gradoSazieta = (double) (Math.round(gradoSazieta*100.0)/100.0);
 			gradoAffettivo = (double) (Math.round(gradoAffettivo*100.0)/100.0);
+			descrizione.append("\n======================================");
 			descrizione.append(NOME+nome);
+			descrizione.append("\nTipo: Base");
 			descrizione.append(SODDISFAZIONE+gradoAffettivo);
 			descrizione.append(SAZIETA+gradoSazieta);
 			if(sonoTriste()) descrizione.append(TRISTE);
 			if(sonoMorto()) descrizione.append(MORTO);
+			descrizione.append("\n======================================");
 			return descrizione.toString();		
 	}
 }
