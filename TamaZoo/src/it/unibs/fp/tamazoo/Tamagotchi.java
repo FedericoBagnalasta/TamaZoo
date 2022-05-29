@@ -47,7 +47,7 @@ public class Tamagotchi {
 	 * @param nome
 	 * @param gradoSazieta
 	 */
-	public Tamagotchi(String nome, int gradoSazieta) {
+	public Tamagotchi(String nome, int gradoSazieta) {                //Sicuro serva?
 		this.nome = nome;
 		this.gradoSazieta = gradoSazieta;
 	}
@@ -107,6 +107,10 @@ public class Tamagotchi {
 
 	public double getSoddisfazione() {
 		return gradoAffettivo;
+	}
+	
+	public String getNome() {       //Aggiunto. Credo serva per l'ereditarieta'
+		return nome;
 	}
 	
 	/**
