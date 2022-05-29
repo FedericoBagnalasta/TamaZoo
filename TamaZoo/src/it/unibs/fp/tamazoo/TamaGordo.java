@@ -41,6 +41,6 @@ public class TamaGordo extends Tamagotchi{
 			descrizione.append(SAZIETA+getSazieta());
 			if(sonoTriste()) descrizione.append(TRISTE);
 			if(sonoMorto()) descrizione.append(MORTO);
-			return descrizione.toString();		
+			return descrizione.toString();
 	}
 }
