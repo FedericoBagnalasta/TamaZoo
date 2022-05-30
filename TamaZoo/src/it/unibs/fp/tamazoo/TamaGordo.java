@@ -1,13 +1,11 @@
 package it.unibs.fp.tamazoo;
 
-import it.unibs.fp.mylib.EstrazioniCasuali;
-
 public class TamaGordo extends Tamagotchi{
 	
-	private double gradoSoddisfazione = 100.0;
+	public static final int GRADO_AFFETTIVO_TAMAGORDO = 100;
 
-	public TamaGordo(String nome, int gradoAffettivo, int gradoSazieta) {
-		super(nome, gradoAffettivo, gradoSazieta);
+	public TamaGordo(String nome, int gradoSazieta) {
+		super(nome, GRADO_AFFETTIVO_TAMAGORDO, gradoSazieta);
 	}
 	
 	//NUOVO COSTRUTTORE SENZA SODDISFAZIONE PER TEST
@@ -44,7 +42,7 @@ public class TamaGordo extends Tamagotchi{
 			descrizione.append("\n======================================");
 			descrizione.append(NOME+getNome());     
 			descrizione.append("\nTipo: TamaGordo");
-			descrizione.append(SODDISFAZIONE+getGradoSoddisfazione());
+			descrizione.append(SODDISFAZIONE+GRADO_AFFETTIVO_TAMAGORDO);
 			descrizione.append(SAZIETA+getGradoSazieta());
 			if(sonoMorto()) descrizione.append(MORTO);
 			descrizione.append("\n======================================");

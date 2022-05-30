@@ -40,8 +40,9 @@ public class Main {
 		
 		System.out.println(zoo.toString());
 		
+		zoo.morteElementoZoo();
 
-	}while(scelta != 0 ); //SE MUOIONO TUTTI ESCI
+	}while(scelta != 0 && zoo.morteZoo()); //SE MUOIONO TUTTI ESCI
 	
 
 	}

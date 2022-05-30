@@ -36,9 +36,10 @@ public class Tamagotchi {
 	 * @param gradoAffetivo
 	 * @param gradoSazieta
 	 */
-	public Tamagotchi(String nome, int gradoAffetivo, int gradoSazieta) {
+	public Tamagotchi(String nome, int gradoAffettivo, int gradoSazieta){
+		if(gradoAffettivo < 0|| gradoSazieta <0) throw new IllegalArgumentException ("I valori inseriti non sono permessi");
 		this.nome = nome;
-		this.gradoAffettivo = gradoAffetivo;
+		this.gradoAffettivo = gradoAffettivo;
 		this.gradoSazieta = gradoSazieta;
 	}
 	
@@ -47,7 +48,7 @@ public class Tamagotchi {
 	 * @param nome
 	 * @param gradoSazieta
 	 */
-	public Tamagotchi(String nome, int gradoSazieta) {                //Sicuro serva?
+	public Tamagotchi(String nome, int gradoSazieta) {                
 		this.nome = nome;
 		this.gradoSazieta = gradoSazieta;
 	}
@@ -105,7 +106,7 @@ public class Tamagotchi {
 		return gradoSazieta;
 	}
 
-	public double getGradoSoddisfazione() {
+	public double getGradoAffettivo() {
 		return gradoAffettivo;
 	}
 	

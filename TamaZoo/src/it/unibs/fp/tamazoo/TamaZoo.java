@@ -28,6 +28,8 @@ public TamaZoo() {
 	
 	}
 
+//NON CREARE CON VALORI CHE CAUSANO MORTE
+
 /**
  * Metodo che crea un Tamagotchi di un tipo precedentemente estratto
  * @return
@@ -43,7 +45,7 @@ private Tamagotchi creaTama() { //Da verificare che restituisca un oggetto Tamag
 		case 1: 
 			return new TamaTriste (nome, gradoSazieta);	
 		case 2: 
-			return new TamaGordo (nome, 100, gradoSazieta);
+			return new TamaGordo (nome, gradoSazieta);
 			
 	}
 	return null;
@@ -68,6 +70,24 @@ int carezzeRandom = NumeriCasuali.estraiIntero(0, 20);
 		zoo.get(i).riceviCarezze(carezzeRandom);
 	}
 	
+}
+
+
+public void morteElementoZoo() {
+	
+	for(int i = 0; i < zoo.size(); i++) {
+		if(zoo.get(i).sonoMorto()) {
+			zoo.remove(i);
+		}
+	}
+}
+
+public boolean morteZoo() {
+	if (zoo.size() == 0) {
+		System.out.println("I Tamagotchi del tuo Zoo sono morti");
+		return false;
+	}
+	return true;
 }
 
 
