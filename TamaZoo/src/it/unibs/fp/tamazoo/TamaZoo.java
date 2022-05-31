@@ -16,9 +16,7 @@ private int tipoTama = -1;
 	
 public TamaZoo() {
 	
-	System.out.println("Quanti Tamagotchi vuoi avere?");
-	
-	int numTama = InputDati.leggiIntero();
+	int numTama = InputDati.leggiIntero("Quanti Tamagotchi vuoi avere?");
 	
 	for(int i = 0; i <numTama; i++) {
 		tipoTama = NumeriCasuali.estraiIntero(0, 2);
