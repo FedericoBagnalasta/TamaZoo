@@ -26,7 +26,7 @@ public class TamaZoo {
 	
 	/**
 	 * Metodo che crea un Tamagotchi di un tipo precedentemente estratto casualmente
-	 * @return
+	 * @return un oggetto Tamagotchi di tipo casuale
 	 */
 	private Tamagotchi creaTama() {
 			String nome = InputDati.leggiStringa(NOME_TAMAGOTCHI);
@@ -83,7 +83,7 @@ public class TamaZoo {
 	
 	/**
 	 * Metodo che verifica la morte di tutti i tamagotchi dello zoo
-	 * @return
+	 * @return false se tutti i Tamagotchi dello zoo sono morti
 	 */
 	public boolean morteZoo() {
 		if (zoo.size() == 0) {
