@@ -5,101 +5,104 @@ import it.unibs.fp.mylib.*;
 
 public class TamaZoo {
 	
-private ArrayList <Tamagotchi> zoo = new ArrayList <Tamagotchi> ();
-/**
- * Tipo di Tamagotchi:
- * 0 Tamagotchi
- * 1 TamaTriste
- * 2 TamaGordo
- */
-private int tipoTama = -1;
-	
-public TamaZoo() {
-	
-	int numTama = InputDati.leggiIntero("Quanti Tamagotchi vuoi avere?");
-	
-	for(int i = 0; i <numTama; i++) {
-		tipoTama = NumeriCasuali.estraiIntero(0, 2);
-		zoo.add(creaTama());
-		}
-	
-	
-	}
+	private static final String MORTE_DI_TUTTI_I_TAMAGOTCHI = "Tutti i Tamagotchi del tuo Zoo sono morti";
+	private static final String NOME_TAMAGOTCHI = "Come vuoi chiamare il tuo Tamagotchi?";
+	private static final String NUMERO_TAMAGOTCHI_DA_CREARE = "Quanti Tamagotchi vuoi avere?";
+	private ArrayList <Tamagotchi> zoo = new ArrayList <Tamagotchi> ();
 
-//NON CREARE CON VALORI CHE CAUSANO MORTE
-
-/**
- * Metodo che crea un Tamagotchi di un tipo precedentemente estratto
- * @return
- */
-private Tamagotchi creaTama() { //Da verificare che restituisca un oggetto Tamagotchi 
-		String nome = InputDati.leggiStringa("Come vuoi chiamare il tuo Tamagotchi?");
-		int gradoAffettivo = NumeriCasuali.estraiIntero(20, 100);
-		int gradoSazieta = NumeriCasuali.estraiIntero(20, 100);
+	private int tipoTama = -1;
 		
-	switch(tipoTama) {	
-		case 0:
-			return new Tamagotchi(nome, gradoAffettivo, gradoSazieta);
-		case 1: 
-			return new TamaTriste (nome, gradoSazieta);	
-		case 2: 
-			return new TamaGordo (nome, gradoSazieta);
+	/**
+	 * Metodo che permette all'utente di scegliere un numero di tamagotchi da creare
+	 */
+	public TamaZoo() {	
+		int numTama = InputDati.leggiIntero(NUMERO_TAMAGOTCHI_DA_CREARE);
+		
+		for(int i = 0; i < numTama; i++) {
+			tipoTama = NumeriCasuali.estraiIntero(0, 2);
+			zoo.add(creaTama());
+			}	
+		}
+	
+	/**
+	 * Metodo che crea un Tamagotchi di un tipo precedentemente estratto casualmente
+	 * @return
+	 */
+	private Tamagotchi creaTama() {
+			String nome = InputDati.leggiStringa(NOME_TAMAGOTCHI);
+			int gradoAffettivo = NumeriCasuali.estraiIntero(20, 99);
+			int gradoSazieta = NumeriCasuali.estraiIntero(20, 99);
 			
-	}
-	return null;
-			
-}
-
-
-public void riceviBiscottiZoo() {
-	int biscottiRandom = NumeriCasuali.estraiIntero(0, 20);
-	
-	for(int i = 0; i < zoo.size(); i++) {
-		zoo.get(i).riceviBiscotti(biscottiRandom);
-	}
-	
-}
-
-public void riceviCarezzeZoo() {
-	
-int carezzeRandom = NumeriCasuali.estraiIntero(0, 20);
-	
-	for(int i = 0; i < zoo.size(); i++) {
-		zoo.get(i).riceviCarezze(carezzeRandom);
+		switch(tipoTama) {
+			//Creazione TamaBase
+			case 0:
+				return new Tamagotchi(nome, gradoAffettivo, gradoSazieta);
+			//Creazione TamaTriste
+			case 1: 
+				return new TamaTriste (nome, gradoSazieta);	
+			//Creazione TamaGordo
+			case 2: 
+				return new TamaGordo (nome, gradoSazieta);			
+		}
+		return null;			
 	}
 	
-}
-
-
-public void morteElementoZoo() {
-	
-	for(int i = 0; i < zoo.size(); i++) {
-		if(zoo.get(i).sonoMorto()) {
-			zoo.remove(i);
+	/**
+	 * Metodo che assegna a tutti i tamagotchi dello zoo un numero casuale di biscotti
+	 */
+	public void riceviBiscottiZoo() {
+		int biscottiRandom = NumeriCasuali.estraiIntero(1, 10);
+		
+		for(int i = 0; i < zoo.size(); i++) {
+			zoo.get(i).riceviBiscotti(biscottiRandom);
 		}
 	}
-}
-
-public boolean morteZoo() {
-	if (zoo.size() == 0) {
-		System.out.println("I Tamagotchi del tuo Zoo sono morti");
-		return false;
-	}
-	return true;
-}
-
-
-public String toString() {
 	
-	StringBuffer elencoZoo = new StringBuffer();
-	
-	for(int i = 0; i < zoo.size(); i++) {
-		elencoZoo.append(String.format("%s\n", zoo.get(i).toString()));
+	/**
+	 * Metodo che assegna a tutti i tamagotchi dello zoo un numero casuale di carezze
+	 */	
+	public void riceviCarezzeZoo() {	
+	int carezzeRandom = NumeriCasuali.estraiIntero(1, 10);
+		
+		for(int i = 0; i < zoo.size(); i++) {
+			zoo.get(i).riceviCarezze(carezzeRandom);
+		}	
 	}
 	
-	return elencoZoo.toString();
-}
-
-
-
+	/**
+	 * Metodo che rimuove un tamagotchi dallo zoo in caso di morte
+	 */
+	public void morteElementoZoo() {	
+		for(int i = 0; i < zoo.size(); i++) {
+			if(zoo.get(i).sonoMorto()) {
+				zoo.remove(i);
+				i--;
+			}
+		}
+	}
+	
+	/**
+	 * Metodo che verifica la morte di tutti i tamagotchi dello zoo
+	 * @return
+	 */
+	public boolean morteZoo() {
+		if (zoo.size() == 0) {
+			System.out.println(MORTE_DI_TUTTI_I_TAMAGOTCHI);
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Metodo che restituisce il nome e lo stato di tutti i tamagotchi dello zoo
+	 */
+	public String toString() {
+		StringBuffer elencoZoo = new StringBuffer();
+		
+		for(int i = 0; i < zoo.size(); i++) {
+			elencoZoo.append(String.format("%s\n", zoo.get(i).toString()));
+		}
+		
+		return elencoZoo.toString();
+	}
 }

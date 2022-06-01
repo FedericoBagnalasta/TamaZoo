@@ -2,6 +2,9 @@ package it.unibs.fp.tamazoo;
 import it.unibs.fp.mylib.EstrazioniCasuali;
 
 public class Tamagotchi {
+	private static final String I_VALORI_INSERITI_NON_SONO_PERMESSI = "I valori inseriti non sono permessi";
+	private static final String TIPO_BASE = "\nTipo: TamaBase";
+	private static final String SPAZIO_PER_DELIMITARE = "\n======================================";
 	public static final String NUMERO_DI_CAREZZE_DATE = "\nIl numero di carezze date al Tamagotchi e': %d\n";
 	public static final String NUMERO_DI_BISCOTTI_DATI = "\nIl numero di biscotti dati al Tamagotchi e': %d\n";
 	public static final int MAX_CAREZZE = 20;
@@ -37,7 +40,7 @@ public class Tamagotchi {
 	 * @param gradoSazieta
 	 */
 	public Tamagotchi(String nome, int gradoAffettivo, int gradoSazieta){
-		if(gradoAffettivo < 0|| gradoSazieta <0) throw new IllegalArgumentException ("I valori inseriti non sono permessi");
+		if(gradoAffettivo < 0 || gradoSazieta < 0) throw new IllegalArgumentException (I_VALORI_INSERITI_NON_SONO_PERMESSI);
 		this.nome = nome;
 		this.gradoAffettivo = gradoAffettivo;
 		this.gradoSazieta = gradoSazieta;
@@ -118,7 +121,7 @@ public class Tamagotchi {
 		this.gradoAffettivo = gradoAffettivo;
 	}
 
-	public String getNome() {       //Aggiunto. Credo serva per l'ereditarieta'
+	public String getNome() {
 		return nome;
 	}
 	
@@ -137,14 +140,14 @@ public class Tamagotchi {
 	StringBuffer descrizione=new StringBuffer();
 			gradoSazieta = (double) (Math.round(gradoSazieta*100.0)/100.0);
 			gradoAffettivo = (double) (Math.round(gradoAffettivo*100.0)/100.0);
-			descrizione.append("\n======================================");
+			descrizione.append(SPAZIO_PER_DELIMITARE);
 			descrizione.append(NOME+nome);
-			descrizione.append("\nTipo: Base");
+			descrizione.append(TIPO_BASE);
 			descrizione.append(SODDISFAZIONE+gradoAffettivo);
 			descrizione.append(SAZIETA+gradoSazieta);
 			if(sonoTriste()) descrizione.append(TRISTE);
 			if(sonoMorto()) descrizione.append(MORTO);
-			descrizione.append("\n======================================");
+			descrizione.append(SPAZIO_PER_DELIMITARE);
 			return descrizione.toString();		
 	}
 }
